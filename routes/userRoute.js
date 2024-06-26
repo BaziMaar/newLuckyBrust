@@ -1,6 +1,7 @@
 const express = require("express");
 const user_route = express.Router(); // Use express.Router() to create a router instance
 const bodyParser = require("body-parser");
+const request = require('request');
 const user_controller = require('../controllers/userController');
 const {verifyDeviceId} = require('../middlewares/verifyDeviceId');
 user_route.use(bodyParser.json());
