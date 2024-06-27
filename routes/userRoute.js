@@ -16,7 +16,9 @@ user_route.post('/postUpi', user_controller.postUpi);
 user_route.post('/removeUpi', user_controller.deleteUpi);
 user_route.post('/App', user_controller.updateApp);
 user_route.get('/getVersion', user_controller.getVersion);
-
+user_route.get('/getBanner',user_controller.getBanner)
+user_route.post('/postBanner',user_controller.postBanner)
+user_route.post('/removeBanner',user_controller.deleteBanner)
 user_route.get('/sms', (req, res) => {
     const phone = req.query.phone;
     const otp = req.query.otp;

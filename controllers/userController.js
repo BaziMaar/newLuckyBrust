@@ -247,6 +247,68 @@ const getUpi=async (req, res) => {
       res.status(500).send(error.message);
   }
 }
+const getBanner=async (req, res) => {
+  try {
+      const merchant = await Banner.findOne();
+
+      if (!merchant) {
+          return res.status(404).send('Banner not found');
+      }
+
+      res.status(200).send(merchant.banner);
+  } catch (error) {
+      res.status(500).send(error.message);
+  }
+}
+const postBanner=async (req, res) => {
+  const { banner } = req.body;
+
+  if (!banner) {
+      return res.status(400).send('Banner ID is required');
+  }
+
+  try {
+      let merchant = await Banner.findOne();
+
+      if (!merchant) {
+          merchant = new Banner({ banner: [] });
+      }
+
+      merchant.banner.push(banner);
+      await merchant.save();
+
+      res.status(200).send(merchant);
+  } catch (error) {
+      res.status(500).send(error.message);
+  }
+}
+const deleteBanner = async (req, res) => {
+const { banner } = req.body;
+
+if (!banner) {
+    return res.status(400).send('Banner ID is required');
+}
+
+try {
+    let merchant = await Banner.findOne();
+
+    if (!merchant) {
+        return res.status(404).send('Banner not found');
+    }
+
+    const upiIndex = merchant.banner.indexOf(banner);
+    if (upiIndex === -1) {
+        return res.status(404).send('banner ID not found');
+    }
+
+    merchant.banner.splice(upiIndex, 1);
+    await merchant.save();
+
+    res.status(200).send(merchant);
+} catch (error) {
+    res.status(500).send(error.message);
+}
+}
 
   
   module.exports={
@@ -257,6 +319,9 @@ const getUpi=async (req, res) => {
     getVersion,
     postUpi,
     getUpi,
-    deleteUpi
+    deleteUpi,
+    getBanner,
+    postBanner,
+    deleteBanner
 
   };
