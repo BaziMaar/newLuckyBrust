@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const Ref=require("../models/referModel.js");
 const Merchant=require("../models/merchantModel.js");
 const App = require("../models/AppModel");
+const Banner=require("../models/BannerModel")
 const userLogin = async (req, res) => {
     try {
       const phone = req.body.phone;
