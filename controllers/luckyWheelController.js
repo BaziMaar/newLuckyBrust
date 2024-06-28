@@ -166,12 +166,16 @@ const sendLuckyMoney = async (io, phone, color, amount) => {
 
     if (color === 0) {
       am1 += amount;
+      am2+=amount
+      am3+=amount
       firstBet += 9 * amount; // Adjusted the multiplier
     } else if (color === 1) {
-      am2 += amount;
+      am2+=amount
+      am3+=amount
       secondBet += 2 * amount; // Adjusted the multiplier
     } else {
-      am3 += amount;
+      am2+=amount
+      am3+=amount
       thirdBet += 2 * amount; // Adjusted the multiplier
     }
 
@@ -259,7 +263,7 @@ const receiveMoney = async (io, phone, color, amount) => {
     }
 
     sender.wallet += winning;
-    sender.withdrawal_amount += winning;
+    sender.withdrwarl_amount += winning;
     await sender.save();
     newUserTransaction.transactions.push({ color, amount: winning });
 

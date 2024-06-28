@@ -215,7 +215,7 @@ const flipMat = (matrix) => {
       }
   
       sender.wallet += amount * time;
-      sender.withdrawal_amount += amount * time;
+      sender.withdrwarl_amount += amount * time;
       newUserTransaction.transactions.push({ time, amount: amount * time });
   
       // Save the entry in MinesEntryTransaction model
